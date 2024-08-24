@@ -1,0 +1,36 @@
+.grid{
+  position: relative;
+  display: flex;
+  gap: .5rem;
+  height: 300px;
+  aspect-ratio: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  row-gap: 0px;
+  
+}
+
+.turn-highligh{
+  color: white;
+  text-align: center;
+}
+
+.resetBtn{
+  position: absolute;
+  padding: 15px;
+  background-color: chartreuse;
+  z-index: 1;
+  bottom: 5%;
+  left: 50%;
+  border: none;
+  border-radius: 10px;
+  width: 290px;
+  transform: translate(-50%);
+  box-shadow: 6px 3px 5px rgb(255, 255, 255);
+}
+
+.resetBtn:hover{
+  box-shadow: 3px 1.5px 5px rgb(255, 255, 255);
+  cursor: pointer;
+}

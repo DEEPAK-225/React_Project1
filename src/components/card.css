@@ -1,0 +1,20 @@
+.cards{
+  background-color: var(--yellow);
+  /* border: 1px solid black; */
+  height: 90px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  border-radius: 10px;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  box-shadow: 6px 3px 5px rgb(255, 255, 255);
+}
+
+.cards:hover{
+  box-shadow: 3px 1.5px 5px rgb(255, 255, 255);
+  cursor: pointer;
+}
