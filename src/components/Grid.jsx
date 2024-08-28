@@ -52,7 +52,7 @@ function Grid({numberOfCards}){
       for (let i = 0; i < board.length; i++) {
         if (board[i] === ' ') {
           board[i] = 'X';
-          if (isWinner(board, board[i]) === 'X') {
+          if (isWinner(board, 'X') === 'X') {
             indexArray.push(i);
             setWinner('X');
             toast.success(`Congratulations! ${'X'} won the game!`);
@@ -67,16 +67,20 @@ function Grid({numberOfCards}){
 
       // Block opponent's winning move
       for (let i = 0; i < board.length; i++) {
-        if (board[i] === ' ') {
-          board[i] = 'O';
-          // let b=[...board]
-          if (isWinner(board, board[i]) === 'O') {
+        let temp_board=[...board];
+        if (temp_board[i] === ' ') {
+          temp_board[i] = 'O';
+          // console.log(indexArray);
+          if(indexArray.length==5){
+            temp_board[indexArray[0]] = ' ';
+          }
+          if (isWinner(temp_board, 'O') === 'O') {
             board[i] = 'X'; // Block the opponent
             indexArray.push(i);
             if(indexArray.length == 6){
               var resetcard = indexArray.shift();
             }
-            board[resetcard] = " ";
+            board[resetcard] = ' ';
             let b=[...board];
             setBoard(b);
             return;
@@ -94,16 +98,16 @@ function Grid({numberOfCards}){
       if(indexArray.length == 6){
         var resetcard = indexArray.shift();
       }
-      board[resetcard] = " ";
+      board[resetcard] = ' ';
       let b=[...board];
       setBoard(b);
-      
+      setTurn(!turn);
     }, 500);
   }
  
 
   function play(index) {
-    if (board[index] !== " " || winner) return; // Prevent overriding moves or playing after a win
+    if (board[index] !== ' ' || winner) return; // Prevent overriding moves or playing after a win
     indexArray.push(index);
     const newBoard = [...board]; // Copy board array
     newBoard[index] = 'O';
@@ -115,13 +119,13 @@ function Grid({numberOfCards}){
     if(indexArray.length == 6 && !isWinner(newBoard,'O')){
       var resetcard = indexArray.shift();
     }
-    newBoard[resetcard] = " ";
+    newBoard[resetcard] = ' ';
     setBoard(newBoard);
   }
 
 
   function reset(){
-    setBoard(Array(numberOfCards).fill(" "));
+    setBoard(Array(numberOfCards).fill(' '));
     setTurn(true);
     setWinner(null);
     indexArray = []; 
